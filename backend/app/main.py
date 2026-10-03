@@ -10,9 +10,11 @@ from contextlib import asynccontextmanager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     from app.seed.generator import generate_data
+    from app.pipeline import run_pipeline
     try:
         generate_data()
-        print("Database seeded successfully on startup.")
+        run_pipeline("2026-09")
+        print("Database seeded and reconciled successfully on startup.")
     except Exception as e:
         print("Failed to seed database:", e)
     yield
