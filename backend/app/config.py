@@ -4,6 +4,7 @@ class Settings(BaseSettings):
     AS_OF_DATE: str = "2026-10-18"
     OPEN_PERIOD: str = "2026-09"
     GSTR3B_DUE_DAY: int = 20
+    GSTR1_DUE_DAY_OF_MONTH: int = 11
     GST_RATE_CUTOVER: str = "2025-09-22"
     PAYMENT_WINDOW_DAYS: int = 180
     PAYMENT_WARN_DAYS: int = 30

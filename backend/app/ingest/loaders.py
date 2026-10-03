@@ -10,6 +10,9 @@ class Dataset:
         self.sales = pd.read_sql("SELECT * FROM salesinvoice", engine)
         self.bank = pd.read_sql("SELECT * FROM banktransaction", engine)
         self.suppliers = pd.read_sql("SELECT * FROM supplier", engine)
+        self.business = pd.read_sql("SELECT * FROM business", engine)
+        self.rates = pd.read_sql("SELECT * FROM ratetable", engine)
+        self.trade_links = pd.read_sql("SELECT * FROM tradelink", engine)
 
 def load_all() -> Dataset:
     return Dataset()
