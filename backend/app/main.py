@@ -5,7 +5,19 @@ from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from .api.routers import router
 
-app = FastAPI(title="ITC Shield API")
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    from app.seed.generator import generate_data
+    try:
+        generate_data()
+        print("Database seeded successfully on startup.")
+    except Exception as e:
+        print("Failed to seed database:", e)
+    yield
+
+app = FastAPI(title="ITC Shield API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
