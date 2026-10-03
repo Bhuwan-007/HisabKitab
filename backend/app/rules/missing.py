@@ -68,7 +68,7 @@ def run(dataset, matches, cfg) -> list[Finding]:
                     Evidence('invoice_tax', tax, 'purchase_books')
                 ],
                 deadline=deadline,
-                action='CONTACT_SUPPLIER',
+                action='CHASE_SUPPLIER',
                 bucket='AT_RISK',
                 reason="Unmatched purchase invoice"
             ))

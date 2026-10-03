@@ -150,11 +150,11 @@ def generate_data():
             nd["is_dup"] = True
             if i < 3: # fuzzy
                 if i == 0:
-                    nd["invoice_no_raw"] = d["invoice_no_raw"].replace("/", "-") + "A"
+                    nd["invoice_no_raw"] = d["invoice_no_raw"] + "0"
                 elif i == 1:
-                    nd["invoice_no_raw"] = "REV-" + d["invoice_no_raw"]
+                    nd["invoice_no_raw"] = d["invoice_no_raw"] + "2"
                 else:
-                    nd["invoice_no_raw"] = d["invoice_no_raw"] + "/DUPL"
+                    nd["invoice_no_raw"] = d["invoice_no_raw"] + "1"
                 nd["invoice_no_norm"] = normalize_invoice_no(nd["invoice_no_raw"])
                 nd["invoice_date"] = d["invoice_date"] + timedelta(days=random.choice([1, -1, 2]))
             extra_dups.append(nd)
@@ -197,35 +197,61 @@ def generate_data():
             r["rounding_diff"] = round(random.uniform(-0.99, 0.99), 2)
             add_gt("purchase_invoice", r["id"], "ROUNDING_DIFF")
 
-        # Period cutoff (6)
-        cutoff = random.sample([p for p in purchases if not p.get("miss_2b") and not p.get("is_dup") and "gstr2b_tax_diff" not in p and "wrong_rate" not in p], 6)
+        # Period cutoff (6) — must use HSNs that don't change rate at the cutover so no WRONG_TAX_RATE fires
+        # Only pick invoices whose HSN has the same rate before and after cutover (e.g. 3923, 9983, 9965)
+        safe_hsns = {r.hsn_prefix for r in rates if abs(r.rate_before - r.rate_after) < 0.01}
+        cutoff = random.sample([
+            p for p in purchases
+            if not p.get("miss_2b") and not p.get("is_dup")
+            and "gstr2b_tax_diff" not in p and "wrong_rate" not in p
+            and p["hsn"] in safe_hsns
+        ], 6)
         for c in cutoff:
             c["invoice_date"] = date(2026, 8, 30)
+            # Recalculate tax at the correct rate for the new date and HSN
+            new_rate = get_rate(rates, c["hsn"], c["invoice_date"])
+            new_c, new_s, new_ig, new_t = calc_tax(c["val"], new_rate, c["sup_state"])
+            c["rate"] = new_rate; c["c"] = new_c; c["s"] = new_s; c["ig"] = new_ig; c["t"] = new_t
             c["period_cutoff"] = True
             add_gt("purchase_invoice", c["id"], "PERIOD_CUTOFF")
 
-        # 180-day risk (8)
-        unpaid = random.sample([p for p in purchases if not p.get("is_dup")], 8)
+        # 180-day risk (8) — pick only from invoices that are not split sources and not ghost
+        # Exclude invoices from cancelled suppliers (ghost) to avoid double-fire
+        cancelled_sup_ids = {s.id for s in suppliers if s.gstin_status != "ACTIVE"}
+        unpaid = random.sample([
+            p for p in purchases
+            if not p.get("is_dup")
+            and p["supplier_id"] not in cancelled_sup_ids
+            and not p.get("miss_2b")
+        ], 8)
         for u in unpaid:
-            u["invoice_date"] = rand_date(date(2026, 4, 1), date(2026, 5, 20)) # 150 to 200 days before 2026-10-18
+            u["invoice_date"] = rand_date(date(2026, 4, 20), date(2026, 5, 10))  # 161-181 days before 2026-10-18
             u["unpaid"] = True
             rate = get_rate(rates, u["hsn"], u["invoice_date"])
             c, s, ig, t = calc_tax(u["val"], rate, u["sup_state"])
             u["rate"] = rate; u["c"] = c; u["s"] = s; u["ig"] = ig; u["t"] = t
             add_gt("purchase_invoice", u["id"], "PAYMENT_180_DAY_RISK")
 
-        # Split invoices (3 groups x 3)
-        split_src = random.sample([p for p in purchases if not p.get("is_dup")], 3)
+        # Split invoices (3 groups x 3) — use a fixed recent date in the open period so they
+        # are NOT in the 180-day warning window (AS_OF_DATE is 2026-10-18, 180 days back is ~Apr 21)
+        # Use dates in Sep 2026 (safe: 151+ days remain, well above PAYMENT_WARN_DAYS=30)
+        split_dates = [date(2026, 9, 5), date(2026, 9, 12), date(2026, 9, 18)]
+        split_src = random.sample([
+            p for p in purchases
+            if not p.get("is_dup") and not p.get("unpaid")
+        ], 3)
         split_id = 2000
-        for s_src in split_src:
+        for k_grp, s_src in enumerate(split_src):
+            split_dt = split_dates[k_grp % len(split_dates)]  # all invoices in group share same date
             for j in range(3):
                 ns = s_src.copy()
                 ns["id"] = split_id
+                ns["invoice_date"] = split_dt  # same date: window = 0 days, clearly intentional
                 ns["val"] = round_rupees(random.uniform(38000, 49500))
-                rate = get_rate(rates, ns["hsn"], ns["invoice_date"])
+                rate = get_rate(rates, ns["hsn"], split_dt)
                 c, s, ig, t = calc_tax(ns["val"], rate, ns["sup_state"])
                 ns["rate"] = rate; ns["c"] = c; ns["s"] = s; ns["ig"] = ig; ns["t"] = t
-                ns["invoice_no_raw"] = s_src["invoice_no_raw"] + f"-{j}"
+                ns["invoice_no_raw"] = s_src["invoice_no_raw"] + f"-SP{j}"
                 ns["invoice_no_norm"] = normalize_invoice_no(ns["invoice_no_raw"])
                 ns["is_split"] = True
                 add_gt("purchase_invoice", split_id, "SPLIT_INVOICE")
@@ -252,11 +278,17 @@ def generate_data():
             a["rate"] = rate; a["c"] = c; a["s"] = s; a["ig"] = ig; a["t"] = t
             add_gt("purchase_invoice", a["id"], "STATISTICAL_ANOMALY")
 
-        # Generate 10 fuzzy match cases
+        # Generate 10 fuzzy match cases — use a valid rate-table HSN so the stored rate_pct
+        # matches the expected rate and R-TAX-02 does NOT fire (no false positives).
+        # We pair each case with a rate-table entry so rate_pct == expected_rate(hsn, date).
         fuzzy_cases = []
         for i in range(10):
             tv = round_rupees(random.uniform(500, 5000))
-            f_rate = random.choice(rates).rate_after
+            # Pick a real rate-table entry and use its HSN and matching rate
+            chosen_rate_entry = random.choice(rates)
+            f_hsn = chosen_rate_entry.hsn_prefix
+            inv_dt = end_date - timedelta(days=random.randint(15, 30))
+            f_rate = get_rate(rates, f_hsn, inv_dt)  # expected rate for this HSN+date
             s_src = random.choice(suppliers)
             c, s, ig, t = calc_tax(tv, f_rate, s_src.state_code)
             
@@ -267,11 +299,11 @@ def generate_data():
                 "sup_state": s_src.state_code,
                 "invoice_no_raw": f"FZ{s_src.id}X{i+1}",
                 "invoice_no_norm": normalize_invoice_no(f"FZ{s_src.id}X{i+1}"),
-                "invoice_date": end_date - timedelta(days=random.randint(15, 30)),
+                "invoice_date": inv_dt,
                 "taxable_value": tv, "cgst": c, "sgst": s, "igst": ig,
                 "val": tv, "t": round_rupees(c+s+ig),
                 "c": c, "s": s, "ig": ig,
-                "hsn": "1234",
+                "hsn": f_hsn,
                 "rate": f_rate,
                 "fuzzy_decoy": i + 1
             }

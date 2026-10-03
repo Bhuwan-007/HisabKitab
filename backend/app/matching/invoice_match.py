@@ -64,9 +64,12 @@ def match_invoices_pair(left_df: pd.DataFrame, right_df: pd.DataFrame, left_type
                 if rr['id'] in matched_right:
                     continue
                 tax_diff = abs(lr['total_tax'] - rr['total_tax'])
-                if tax_diff <= config.ROUNDING_TOLERANCE:
+                val_diff_pct = abs(lr['taxable_value'] - rr['taxable_value']) / max(1, lr['taxable_value'])
+                date_diff = abs((pd.to_datetime(lr['invoice_date']) - pd.to_datetime(rr['invoice_date'])).days)
+                
+                if (tax_diff <= config.ROUNDING_TOLERANCE or val_diff_pct <= 0.01) and date_diff <= 15:
                     sim = fuzz.ratio(lr['invoice_no_norm'], rr['invoice_no_norm']) / 100.0
-                    if sim > 0.85 and sim > best_sim:
+                    if sim >= 0.80 and sim > best_sim:
                         best_sim = sim
                         best_r = rr
                         best_diffs = {
