@@ -112,6 +112,35 @@ def match_payments(dataset) -> List[MatchRecord]:
             matches.append(MatchRecord("bank_transaction", b_row['id'], "sales_invoice", s_id, "RECEIPT_EXACT", 1.0, {"amount_diff": float(possible_sales.iloc[0]['total'] - b_amt)}))
             continue
             
-        apply_upi_adjustment(b_row, None)
+        # Check UPI adjustment
+        from app.rules.upi_mdr import get_mdr_fee
+        
+        found_upi = False
+        unmatched_sales = sales[~sales['id'].isin(matched_sales)]
+        for _, s_row in unmatched_sales.iterrows():
+            s_amt = float(s_row['total'])
+            mdr_fee = get_mdr_fee(b_row, s_amt, config)
+            if mdr_fee > 0:
+                expected = s_amt - mdr_fee
+                if abs(expected - b_amt) <= config.ROUNDING_TOLERANCE:
+                    matched_bank.add(b_row['id'])
+                    matched_sales.add(s_row['id'])
+                    matches.append(MatchRecord("bank_transaction", b_row['id'], "sales_invoice", s_row['id'], "MDR_ADJUSTED", 1.0, {"mdr_fee": mdr_fee}))
+                    found_upi = True
+                    break
+                    
+        if found_upi:
+            continue
+            
+        # Fallback for short UPI receipts not explained by MDR
+        if b_row['channel'] == 'UPI' and b_row['txn_kind'] == 'P2M':
+            for _, s_row in unmatched_sales.iterrows():
+                if s_row['invoice_date'] == b_row['txn_date']:
+                    s_amt = float(s_row['total'])
+                    if s_amt > b_amt and (s_amt - b_amt) <= 500: # reasonable short cap
+                        matched_bank.add(b_row['id'])
+                        matched_sales.add(s_row['id'])
+                        matches.append(MatchRecord("bank_transaction", b_row['id'], "sales_invoice", s_row['id'], "UPI_UNEXPLAINED_SHORT", 0.9, {"amount_diff": float(s_amt - b_amt)}))
+                        break
 
     return matches

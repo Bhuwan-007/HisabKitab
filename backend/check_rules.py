@@ -10,8 +10,15 @@ from app.config import config
 def main():
     ds = load_all()
     
+    from app.matching.payment_match import match_payments
     matches = match_invoices(ds)
+    p_matches = match_payments(ds)
+    matches.extend(p_matches)
+    
     findings = run_all_tax_rules(ds, matches, config)
+    from app.rules import run_all_payment_rules
+    p_findings = run_all_payment_rules(ds, matches, config)
+    findings.extend(p_findings)
     
     f_counts = collections.Counter([f.issue_type for f in findings])
     
@@ -28,7 +35,9 @@ def main():
         relevant_rules = {
             "MISSING_IN_GSTR2B", "MISSING_IN_BOOKS", "AMOUNT_MISMATCH",
             "SUPPLIER_GSTIN_CANCELLED", "WRONG_TAX_RATE", "WRONG_TAX_TYPE",
-            "DUPLICATE_INVOICE", "PERIOD_CUTOFF", "ROUNDING_DIFF"
+            "DUPLICATE_INVOICE", "PERIOD_CUTOFF", "ROUNDING_DIFF",
+            "PAYMENT_180_DAY_RISK", "UPI_MDR_ADJUSTED", "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
+            "UNMATCHED_PAYMENT", "UNMATCHED_RECEIPT"
         }
         if t in relevant_rules:
             print(f"{t:<30} | {f_counts.get(t, 0):<8} | {gt_counts.get(t, 0):<12}")
