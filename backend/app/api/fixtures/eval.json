@@ -1,0 +1,8 @@
+{
+  "metrics": {
+    "MISSING_IN_GSTR2B": {
+      "precision": 0.95,
+      "recall": 0.9
+    }
+  }
+}

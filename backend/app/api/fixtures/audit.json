@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "ts": "2026-10-18T10:00:00Z",
+    "actor": "system",
+    "action": "RUN_STARTED",
+    "entity_type": "run",
+    "entity_id": 1,
+    "payload_json": "{}",
+    "hash": "abc"
+  }
+]

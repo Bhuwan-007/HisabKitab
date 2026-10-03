@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlmodel
+pandas
+rapidfuzz
+scikit-learn
+networkx
+pydantic
+pydantic-settings
+python-dotenv
+python-multipart
+pytest
+httpx

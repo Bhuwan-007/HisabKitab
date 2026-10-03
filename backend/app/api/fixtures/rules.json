@@ -1,0 +1,12 @@
+{
+  "active_config": {
+    "AS_OF_DATE": "2026-10-18"
+  },
+  "rate_table": [
+    {
+      "hsn_prefix": "4819",
+      "rate_before": 12,
+      "rate_after": 5
+    }
+  ]
+}

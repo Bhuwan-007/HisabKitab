@@ -1,0 +1,100 @@
+{
+  "id": 1,
+  "name": "Zenith Traders",
+  "gstin": "07ZZZZZ9999Z1Z1",
+  "score": 85.5,
+  "factors": {
+    "missed_filings": {
+      "weight": 30,
+      "normalised": 0.85,
+      "contribution": 25.5,
+      "plain_text": "Missed or late filings in last 6 months"
+    },
+    "missing_in_gstr2b": {
+      "weight": 25,
+      "normalised": 1.0,
+      "contribution": 25.0,
+      "plain_text": "Share of our invoices missing in GSTR-2B"
+    },
+    "avg_delay": {
+      "weight": 15,
+      "normalised": 1.0,
+      "contribution": 15.0,
+      "plain_text": "Average filing delay"
+    },
+    "mismatch_rate": {
+      "weight": 15,
+      "normalised": 1.0,
+      "contribution": 15.0,
+      "plain_text": "Mismatch rate with us"
+    },
+    "circular_trading": {
+      "weight": 15,
+      "normalised": 0.333,
+      "contribution": 5.0,
+      "plain_text": "In a flagged circular-trading loop"
+    }
+  },
+  "issues": [
+    {
+      "id": 1,
+      "rule_id": "R-MATCH-01",
+      "issue_type": "MISSING_IN_GSTR2B",
+      "bucket": "AT_RISK",
+      "severity": "HIGH",
+      "title": "Invoice not in GSTR-2B",
+      "plain_reason": "Zenith Traders has not reported this invoice, so the tax credit cannot be claimed yet.",
+      "amount_at_stake": 180000.0,
+      "priority_score": 270000.0,
+      "confidence": 1.0,
+      "deadline": "2026-10-20",
+      "days_left": 2,
+      "recommended_action": "CHASE_SUPPLIER",
+      "entity": {
+        "type": "purchase_invoice",
+        "id": 412,
+        "invoice_no": "INV/25-26/0045",
+        "invoice_date": "2026-09-12",
+        "supplier_id": 1,
+        "supplier_name": "Zenith Traders"
+      },
+      "evidence": [
+        {
+          "label": "Books tax",
+          "value": "180000.00",
+          "source": "purchase_books#412"
+        }
+      ],
+      "status": "OPEN",
+      "explanation": null,
+      "draft": null
+    },
+    {
+      "id": 2,
+      "rule_id": "R-CLK-01",
+      "issue_type": "PAYMENT_180_DAY_RISK",
+      "bucket": "AT_RISK",
+      "severity": "HIGH",
+      "title": "Pay supplier before the 180-day limit",
+      "plain_reason": "Invoice INV-01 is unpaid and 10 days remain of the 180-day limit. Pay by 2026-10-28 to keep \u20b950000.0 of credit.",
+      "amount_at_stake": 50000.0,
+      "priority_score": 75000.0,
+      "confidence": 1.0,
+      "deadline": "2026-10-28",
+      "days_left": 10,
+      "recommended_action": "PAY_NOW",
+      "entity": {
+        "type": "purchase_invoice",
+        "id": 413,
+        "invoice_no": "INV-01",
+        "invoice_date": "2026-05-01",
+        "supplier_id": 1,
+        "supplier_name": "Zenith Traders"
+      },
+      "evidence": [],
+      "status": "OPEN",
+      "explanation": null,
+      "draft": null
+    }
+  ]
+}

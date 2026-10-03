@@ -1,0 +1,8 @@
+{
+  "output_tax": 5000000.0,
+  "itc_claim_now": 4260000.0,
+  "itc_if_all_recovered": 5060000.0,
+  "net_payable_now": 740000.0,
+  "net_payable_if_recovered": 0.0,
+  "cash_impact_of_issues": 740000.0
+}

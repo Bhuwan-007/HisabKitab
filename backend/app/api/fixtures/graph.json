@@ -1,0 +1,49 @@
+{
+  "nodes": [
+    {
+      "id": "13",
+      "name": "Parts Co",
+      "is_supplier": true,
+      "val": 100
+    },
+    {
+      "id": "S1",
+      "name": "Shell 1",
+      "is_supplier": false,
+      "val": 50
+    },
+    {
+      "id": "S2",
+      "name": "Shell 2",
+      "is_supplier": false,
+      "val": 50
+    }
+  ],
+  "edges": [
+    {
+      "source": "13",
+      "target": "S1",
+      "val": 10
+    },
+    {
+      "source": "S1",
+      "target": "S2",
+      "val": 10
+    },
+    {
+      "source": "S2",
+      "target": "13",
+      "val": 10
+    }
+  ],
+  "cycles": [
+    {
+      "nodes": [
+        "13",
+        "S1",
+        "S2"
+      ],
+      "value": 500000.0
+    }
+  ]
+}

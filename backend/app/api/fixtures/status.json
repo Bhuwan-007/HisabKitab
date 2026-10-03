@@ -1,0 +1,37 @@
+{
+  "purchase_books": {
+    "matched": 350,
+    "matched_adjusted": 20,
+    "discrepant": 30,
+    "unmatched": 15,
+    "duplicate": 5
+  },
+  "supplier_invoices": {
+    "matched": 350,
+    "matched_adjusted": 20,
+    "discrepant": 30,
+    "unmatched": 15,
+    "duplicate": 5
+  },
+  "gstr2b_entries": {
+    "matched": 350,
+    "matched_adjusted": 20,
+    "discrepant": 30,
+    "unmatched": 15,
+    "duplicate": 5
+  },
+  "sales_invoices": {
+    "matched": 350,
+    "matched_adjusted": 20,
+    "discrepant": 30,
+    "unmatched": 15,
+    "duplicate": 5
+  },
+  "bank_transactions": {
+    "matched": 350,
+    "matched_adjusted": 20,
+    "discrepant": 30,
+    "unmatched": 15,
+    "duplicate": 5
+  }
+}
