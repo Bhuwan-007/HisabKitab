@@ -51,7 +51,7 @@ def run_reconciliation(session: Session, period: str):
     risk_result = run_risk_layer(ds, findings, config)
     findings.extend(risk_result.new_findings)
     
-    issues = build_issues(findings, risk_result.supplier_scores, run_id)
+    issues = build_issues(findings, risk_result.supplier_scores, run_id, ds)
     
     # Deduplicate issues: only one issue per record.
     # Priority order follows ARCHITECTURE section 8 bucket logic and BUSINESS_RULES R-ITC-01:

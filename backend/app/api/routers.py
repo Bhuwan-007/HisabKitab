@@ -1,5 +1,6 @@
 import json
 import os
+import pandas as pd
 from typing import List, Optional
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from pydantic import BaseModel
@@ -59,7 +60,65 @@ def run_recon(req: RunRequest = None):
 
 @router.get("/summary", response_model=SummaryResponse)
 def get_summary(period: str = None):
-    return load_fixture("summary")
+    period = period or config.OPEN_PERIOD
+    with Session(engine) as session:
+        run = session.exec(select(ReconRun).where(ReconRun.period == period).order_by(ReconRun.id.desc()).limit(1)).first()
+        if not run:
+            return load_fixture("summary")
+            
+        issues = session.exec(select(Issue).where(Issue.run_id == run.id)).all()
+        ds = load_all()
+        
+        # We need to populate the transient attributes for the top5 queue formatting
+        from app.decision.issues import build_issues
+        # But wait, doing build_issues again just for transient attributes is inefficient. 
+        # Actually, let's just use the issues from DB and we can manually inject the entity details for the top 5
+        
+        issues.sort(key=lambda x: (x.priority_score or 0), reverse=True)
+        top5 = issues[:5]
+        
+        for issue in top5:
+            ent_id = issue.entity_id
+            sup_id = issue.supplier_id
+            if sup_id is not None and not ds.suppliers.empty:
+                sup_row = ds.suppliers[ds.suppliers['id'] == sup_id]
+                if not sup_row.empty:
+                    issue._sup_name = sup_row.iloc[0]['name']
+            if ent_id is not None:
+                df = None
+                if issue.entity_type == 'purchase_invoice': df = ds.purchase_books
+                elif issue.entity_type == 'gstr2b': df = ds.gstr2b
+                elif issue.entity_type == 'sales_invoice': df = ds.sales
+                elif issue.entity_type == 'bank_transaction': df = ds.bank
+                if df is not None and not df.empty and 'id' in df.columns:
+                    row = df[df['id'] == ent_id]
+                    if not row.empty:
+                        row = row.iloc[0]
+                        if 'invoice_no_raw' in row: issue._inv_no = row['invoice_no_raw']
+                        elif 'invoice_no' in row: issue._inv_no = row['invoice_no']
+                        if 'invoice_date' in row and pd.notna(row['invoice_date']):
+                            issue._inv_dt = row['invoice_date'] if isinstance(row['invoice_date'], str) else row['invoice_date'].strftime('%Y-%m-%d')
+                            
+        top5_formatted = [_format_issue(i) for i in top5]
+        
+        # Compute KPIs
+        liability_res = compute_liability(ds, issues, period)
+        
+        status_counts = session.exec(
+            select(RecordStatus.status, func.count(RecordStatus.id))
+            .where(RecordStatus.run_id == run.id)
+            .group_by(RecordStatus.status)
+        ).all()
+        status_breakdown = {s.lower(): c for s, c in status_counts}
+        
+        return {
+            "safe_to_claim": liability_res["safe_to_claim"],
+            "at_risk": liability_res["at_risk"],
+            "needs_fix": liability_res["needs_fix"],
+            "status_breakdown": status_breakdown,
+            "liability": liability_res["liability"],
+            "top5_queue": top5_formatted
+        }
 
 @router.get("/reconciliation/status", response_model=ReconStatusResponse)
 def get_recon_status(source: str = None):
@@ -74,7 +133,10 @@ def _format_issue(issue: Issue) -> dict:
     d["entity"] = {
         "type": issue.entity_type,
         "id": issue.entity_id,
-        "supplier_id": issue.supplier_id
+        "invoice_no": getattr(issue, "_inv_no", None),
+        "invoice_date": getattr(issue, "_inv_dt", None),
+        "supplier_id": issue.supplier_id,
+        "supplier_name": getattr(issue, "_sup_name", None)
     }
     d["evidence"] = json.loads(issue.evidence_json) if issue.evidence_json else []
     if getattr(issue, "deadline", None):

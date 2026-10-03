@@ -132,5 +132,5 @@ def test_evaluation(engine):
     # rule-based types should have high precision and recall
     for t in ['AMOUNT_MISMATCH', 'MISSING_IN_GSTR2B', 'MISSING_IN_BOOKS', 'WRONG_TAX_RATE', 'PAYMENT_180_DAY_RISK', 'SPLIT_INVOICE']:
         if t in by_type:
-            assert by_type[t]['recall'] >= 0.8
-            assert by_type[t]['precision'] >= 0.7
+            assert by_type[t]['recall'] >= 0.90
+            assert by_type[t]['precision'] >= 0.85

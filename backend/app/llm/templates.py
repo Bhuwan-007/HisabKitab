@@ -13,6 +13,8 @@ def get_fallback_explanation(finding) -> str:
         date = ev.get('invoice_date', 'unknown')
         c = ev.get('charged_rate', 0)
         e = ev.get('expected_rate', 0)
+        if finding.amount_at_stake == 0:
+            return f"This invoice is dated {date}, but charges {c}% instead of {e}%. Supplier charged less than expected; they may owe the difference."
         return f"This invoice is dated {date}, but charges {c}% instead of {e}%. Ask for a credit note for ₹{amt}."
     elif t == 'PAYMENT_180_DAY_RISK':
         days = ev.get('days_left', 0)

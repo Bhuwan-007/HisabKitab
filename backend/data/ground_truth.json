@@ -1,61 +1,67 @@
 [
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 78,
+    "entity_id": 112,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 47,
+    "entity_id": 466,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 119,
+    "entity_id": 444,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 359,
+    "entity_id": 477,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 491,
+    "entity_id": 256,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 150,
+    "entity_id": 268,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 284,
+    "entity_id": 185,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 458,
+    "entity_id": 98,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 430,
+    "entity_id": 476,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 397,
+    "entity_id": 24,
+    "injected_issue_type": "MISSING_IN_GSTR2B",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 39,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
@@ -67,115 +73,109 @@
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 415,
-    "injected_issue_type": "MISSING_IN_GSTR2B",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
     "entity_id": 118,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 303,
+    "entity_id": 302,
     "injected_issue_type": "MISSING_IN_GSTR2B",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 273,
+    "entity_id": 199,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 246,
+    "entity_id": 14,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 134,
+    "entity_id": 410,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 414,
+    "entity_id": 394,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 178,
+    "entity_id": 470,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 381,
+    "entity_id": 154,
     "injected_issue_type": "SUPPLIER_GSTIN_CANCELLED",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 506,
+    "entity_id": 12,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 100,
+    "entity_id": 80,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 447,
+    "entity_id": 314,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 433,
+    "entity_id": 374,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 471,
+    "entity_id": 490,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 517,
+    "entity_id": 77,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 262,
+    "entity_id": 412,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 289,
+    "entity_id": 61,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 166,
+    "entity_id": 450,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 93,
+    "entity_id": 282,
     "injected_issue_type": "AMOUNT_MISMATCH",
     "note": ""
   },
@@ -229,307 +229,307 @@
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 79,
+    "entity_id": 376,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 318,
+    "entity_id": 485,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 379,
+    "entity_id": 506,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 498,
+    "entity_id": 334,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 75,
+    "entity_id": 426,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 419,
+    "entity_id": 196,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 59,
+    "entity_id": 126,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 460,
+    "entity_id": 360,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 285,
+    "entity_id": 321,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 467,
+    "entity_id": 441,
     "injected_issue_type": "WRONG_TAX_RATE",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 401,
+    "entity_id": 19,
     "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 238,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 437,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 350,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 266,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 355,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 176,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 97,
+    "entity_id": 103,
     "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
     "entity_id": 331,
-    "injected_issue_type": "WRONG_TAX_TYPE",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
     "entity_id": 176,
-    "injected_issue_type": "WRONG_TAX_TYPE",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 511,
-    "injected_issue_type": "WRONG_TAX_TYPE",
+    "entity_id": 512,
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 446,
-    "injected_issue_type": "WRONG_TAX_TYPE",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 338,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 124,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 352,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 312,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 56,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 272,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 77,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 185,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 410,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 41,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 132,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 193,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 179,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 92,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 350,
-    "injected_issue_type": "ROUNDING_DIFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 373,
-    "injected_issue_type": "PERIOD_CUTOFF",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 449,
-    "injected_issue_type": "PERIOD_CUTOFF",
+    "entity_id": 447,
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
     "entity_id": 337,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 125,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 119,
+    "injected_issue_type": "WRONG_TAX_TYPE",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 140,
+    "injected_issue_type": "WRONG_TAX_TYPE",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 381,
+    "injected_issue_type": "WRONG_TAX_TYPE",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 40,
+    "injected_issue_type": "WRONG_TAX_TYPE",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 198,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 147,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 437,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 63,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 400,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 1,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 28,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 217,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 244,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 407,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 234,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 95,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 496,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 231,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 274,
+    "injected_issue_type": "ROUNDING_DIFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 327,
     "injected_issue_type": "PERIOD_CUTOFF",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 308,
+    "entity_id": 147,
     "injected_issue_type": "PERIOD_CUTOFF",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 499,
+    "entity_id": 71,
     "injected_issue_type": "PERIOD_CUTOFF",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 336,
+    "entity_id": 495,
     "injected_issue_type": "PERIOD_CUTOFF",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 55,
+    "entity_id": 88,
+    "injected_issue_type": "PERIOD_CUTOFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 294,
+    "injected_issue_type": "PERIOD_CUTOFF",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 326,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 461,
+    "entity_id": 337,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 264,
+    "entity_id": 492,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 439,
+    "entity_id": 265,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 480,
+    "entity_id": 386,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 318,
+    "entity_id": 17,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 360,
+    "entity_id": 236,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 423,
+    "entity_id": 517,
     "injected_issue_type": "PAYMENT_180_DAY_RISK",
     "note": ""
   },
@@ -625,37 +625,37 @@
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 374,
+    "entity_id": 263,
     "injected_issue_type": "STATISTICAL_ANOMALY",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
-    "entity_id": 16,
+    "entity_id": 83,
+    "injected_issue_type": "STATISTICAL_ANOMALY",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 31,
+    "injected_issue_type": "STATISTICAL_ANOMALY",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 194,
+    "injected_issue_type": "STATISTICAL_ANOMALY",
+    "note": ""
+  },
+  {
+    "entity_type": "purchase_invoice",
+    "entity_id": 2,
     "injected_issue_type": "STATISTICAL_ANOMALY",
     "note": ""
   },
   {
     "entity_type": "purchase_invoice",
     "entity_id": 229,
-    "injected_issue_type": "STATISTICAL_ANOMALY",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 503,
-    "injected_issue_type": "STATISTICAL_ANOMALY",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 347,
-    "injected_issue_type": "STATISTICAL_ANOMALY",
-    "note": ""
-  },
-  {
-    "entity_type": "purchase_invoice",
-    "entity_id": 88,
     "injected_issue_type": "STATISTICAL_ANOMALY",
     "note": ""
   },
@@ -721,32 +721,80 @@
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 540,
+    "entity_id": 532,
     "injected_issue_type": "UNMATCHED_PAYMENT",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 533,
+    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 534,
+    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 535,
+    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 536,
+    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 537,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 538,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 539,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 540,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 541,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 542,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 543,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 544,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
@@ -824,138 +872,90 @@
   {
     "entity_type": "bank_transaction",
     "entity_id": 557,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 558,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 559,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 560,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 561,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 562,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 563,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 564,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": null,
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 565,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 566,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 567,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 568,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 569,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 570,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 571,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 572,
-    "injected_issue_type": null,
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 573,
     "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 574,
-    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 575,
-    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
-    "note": ""
-  },
-  {
-    "entity_type": "bank_transaction",
-    "entity_id": 965,
+    "entity_id": 957,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 966,
+    "entity_id": 958,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 967,
+    "entity_id": 959,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 968,
+    "entity_id": 960,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },

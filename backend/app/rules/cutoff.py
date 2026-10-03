@@ -29,11 +29,15 @@ def run(dataset, matches, cfg) -> list[Finding]:
         if inv_date.day >= last_day - 2:
             # Check conditions
             inv_month_str = inv_date.strftime("%Y-%m")
+            if inv_date.month == 12:
+                next_month_str = f"{inv_date.year + 1}-01"
+            else:
+                next_month_str = f"{inv_date.year}-{inv_date.month + 1:02d}"
             
             cutoff_issue = False
             reasons = []
             
-            if pb['itc_period'] > inv_month_str:
+            if pb['itc_period'] == next_month_str:
                 cutoff_issue = True
                 reasons.append("itc_period in next month")
                 
@@ -41,16 +45,16 @@ def run(dataset, matches, cfg) -> list[Finding]:
             g2b_id = g2b_matches.get(pb['id'])
             if g2b_id and g2b_id in g2b_dict:
                 g2b = g2b_dict[g2b_id]
-                if g2b['return_period'] > inv_month_str:
+                if g2b['return_period'] != inv_month_str:
                     cutoff_issue = True
-                    reasons.append("GSTR-2B return_period in next month")
+                    reasons.append("GSTR-2B return_period in different month")
                     
             # Check payment date
             p_ids = bank_matches.get(pb['id'], [])
             for p_id in p_ids:
                 if p_id in bank_dict:
                     p_date = pd.to_datetime(bank_dict[p_id]['txn_date']).date()
-                    if p_date.strftime("%Y-%m") > inv_month_str:
+                    if p_date.strftime("%Y-%m") == next_month_str:
                         cutoff_issue = True
                         reasons.append("payment date in next month")
                         

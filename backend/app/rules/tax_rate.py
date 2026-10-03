@@ -66,12 +66,20 @@ def run(dataset, matches, cfg) -> list[Finding]:
         inv_date = pd.to_datetime(pb['invoice_date']).date()
         expected_rate = get_expected_rate(pb['hsn'], inv_date)
         
-        # Use SI rate if matched, else PB rate
         si_id = si_matches.get(pb_id)
+        charged_rate = None
         if si_id and si_id in si_dict:
-            charged_rate = float(si_dict[si_id]['rate_pct'])
-        else:
-            charged_rate = float(pb['rate_pct'])
+            raw = si_dict[si_id].get('rate_pct')
+            if pd.notna(raw):
+                charged_rate = float(raw)
+        
+        if charged_rate is None:
+            raw = pb.get('rate_pct')
+            if pd.notna(raw):
+                charged_rate = float(raw)
+                
+        if charged_rate is None:
+            continue
             
         if abs(charged_rate - expected_rate) > 0.01:
             taxable = float(pb['taxable_value'])
@@ -111,6 +119,7 @@ def run(dataset, matches, cfg) -> list[Finding]:
                 amount_at_stake=stake,
                 confidence=0.95,
                 evidence=[
+                    Evidence('invoice_date', inv_date.strftime('%Y-%m-%d'), 'purchase_books'),
                     Evidence('charged_rate', charged_rate, 'supplier_invoices/books'),
                     Evidence('expected_rate', expected_rate, 'rate_table'),
                     Evidence('taxable_value', taxable, 'purchase_books'),

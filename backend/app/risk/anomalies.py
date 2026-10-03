@@ -60,8 +60,6 @@ def detect_split_invoices(dataset, cfg) -> list[Finding]:
             # or just i += 1. But since ground truth has 3 groups of 3, 
             # if we consume them all, we can do i = j
             i = j
-            if j == i: # shouldn't happen, but to avoid infinite loops if it does
-                i += 1
                         
     return findings
 

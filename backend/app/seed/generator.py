@@ -94,8 +94,16 @@ def generate_data():
             if random.random() < 0.4:
                 dt = rand_date(date(2026, 7, 15), end_date)
             sup = random.choice(suppliers)
+            
+            if sup.gstin_status != "ACTIVE" and sup.status_changed_on:
+                sup_end = sup.status_changed_on - timedelta(days=1)
+                if dt > sup_end:
+                    dt = rand_date(start_date, sup_end)
+                    
             hsn = random.choice(hsn_list)
             val = round_rupees(random.uniform(5000, 150000))
+            if 35000 <= val <= 50000:
+                val += 20000
             
             raw_no = f"INV/{i}"
             if random.random() < 0.2:
@@ -238,7 +246,7 @@ def generate_data():
         split_dates = [date(2026, 9, 5), date(2026, 9, 12), date(2026, 9, 18)]
         split_src = random.sample([
             p for p in purchases
-            if not p.get("is_dup") and not p.get("unpaid")
+            if not p.get("is_dup") and not p.get("unpaid") and "wrong_rate" not in p
         ], 3)
         split_id = 2000
         for k_grp, s_src in enumerate(split_src):
@@ -405,11 +413,16 @@ def generate_data():
             session.add(si)
 
         # Bank TXNs (~900)
+        import calendar
         txn_id = 1
         for p in purchases:
-            if not p.get("unpaid"):
+            if not p.get("unpaid") and not p.get("is_dup"):
+                txn_date = p["invoice_date"] + timedelta(days=10)
+                _, last = calendar.monthrange(p["invoice_date"].year, p["invoice_date"].month)
+                if p["invoice_date"].day >= last - 2 and not p.get("period_cutoff"):
+                    txn_date = p["invoice_date"]
                 bt = BankTransaction(
-                    id=txn_id, txn_date=p["invoice_date"] + timedelta(days=10),
+                    id=txn_id, txn_date=txn_date,
                     direction="DEBIT", amount=round_rupees(p["val"] + p["t"]),
                     channel="NEFT", narration=f"Paid {p['invoice_no_raw']}",
                     counterparty_hint=suppliers[p["supplier_id"]-1].name,
