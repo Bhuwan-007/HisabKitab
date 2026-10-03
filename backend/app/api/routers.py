@@ -36,6 +36,8 @@ class SeedRequest(BaseModel):
 
 @router.post("/data/seed")
 def seed_data(req: SeedRequest = None):
+    from app.seed.generator import generate_data
+    generate_data()
     return {"status": "seeded"}
 
 @router.post("/data/upload/{kind}")

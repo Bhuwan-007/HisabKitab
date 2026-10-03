@@ -62,7 +62,7 @@ If two disagree, follow the earlier one and say so in your summary.
 - Timeout 8 seconds. Cache by prompt hash. Never log API keys. Keys come from `.env` only.
 
 ## Frontend rules
-
+- Colour rule: never use orange, navy blue, purple or green, and no glow effects (no coloured or blurred glows, neon, shine gradients). Colour is reserved for exceptions: safe = plain ink with a check mark, at risk = sindoor red, needs fix = brass fill with dark text, review = grey.
 - Use only the routes and components in ARCHITECTURE section 13.
 - No hard-coded colours, radii or fonts in components. Use design tokens in `src/styles/tokens.css` through Tailwind.
 - All server data goes through one typed API client in `src/api/`. Types mirror `schemas.py`.
