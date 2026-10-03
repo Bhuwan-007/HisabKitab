@@ -1,9 +1,11 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { api, useAsync } from "../api";
+import { api, useSummary } from "../api";
 import { ACTION_LABEL, bucketTone, daysLeftLabel, formatDate, formatINR, formatLakh } from "../format";
 import { ErrorBox, Loading, Badge } from "../components/ui";
 import Donut from "../components/Donut";
 import { invoiceLabel, supplierName } from "../components/Drawer";
+import { useQuery } from "@tanstack/react-query";
+import type { QueueItem } from "../types";
 
 function monthOptions(asOf?: string): string[] {
   const base = asOf ? new Date(asOf + "T00:00:00") : new Date();
@@ -18,14 +20,20 @@ function monthOptions(asOf?: string): string[] {
 export default function Dashboard() {
   const [sp, setSp] = useSearchParams();
   const period = sp.get("period") || undefined;
-  const health = useAsync(() => api.health(), []);
-  const sum = useAsync(() => api.summary(period), [period]);
+  
+  const { data: healthData, isLoading: healthLoading } = useQuery({
+    queryKey: ["health"],
+    queryFn: () => api.health()
+  });
+  
+  const { data: s, isLoading: sumLoading, error: sumError, refetch: sumReload } = useSummary(period);
 
-  if (sum.loading && !sum.data) return <Loading label="Opening the books..." />;
-  if (sum.error) return <ErrorBox error={sum.error} onRetry={sum.reload} />;
-  const s = sum.data!;
+  if (sumLoading && !s) return <Loading label="Opening the books..." />;
+  if (sumError) return <ErrorBox error={sumError as Error} onRetry={sumReload} />;
+  
+  if (!s) return null;
   const L = s.liability;
-  const shownPeriod = period || health.data?.period || "";
+  const shownPeriod = period || healthData?.period || "";
 
   return (
     <div>
@@ -34,14 +42,14 @@ export default function Dashboard() {
           <h1>Dashboard</h1>
           <p className="sub">
             Before you file: what is safe to claim, what is at risk, and what to fix.
-            {health.data && <> As of {formatDate(health.data.as_of_date)}.</>}
+            {healthData && <> As of {formatDate(healthData.as_of_date)}.</>}
           </p>
         </div>
         <label className="period">
           Tax period
           <select value={shownPeriod} onChange={(e) => setSp(e.target.value ? { period: e.target.value } : {})}>
             {!shownPeriod && <option value="">Current</option>}
-            {monthOptions(health.data?.as_of_date).map((m) => (
+            {monthOptions(healthData?.as_of_date).map((m) => (
               <option key={m} value={m}>
                 {m}
               </option>
@@ -71,7 +79,7 @@ export default function Dashboard() {
       <div className="spread">
         <section className="sheet page-l">
           <h3>Reconciliation status</h3>
-          <Donut data={s.status_breakdown} />
+          <Donut data={s.status_breakdown as any} />
           <p className="strip">
             {s.status_breakdown.matched_adjusted ?? 0} records were matched automatically after a rounding or UPI fee
             difference. Those are explained, not errors.
@@ -95,7 +103,7 @@ export default function Dashboard() {
           <h3 className="top-h">Top to act on</h3>
           {s.top5_queue.length === 0 && <div className="empty">Nothing needs attention.</div>}
           <ol className="top5">
-            {s.top5_queue.map((q) => (
+            {s.top5_queue.map((q: QueueItem) => (
               <li key={q.id}>
                 <Link to={`/queue/${q.id}`}>
                   <div className="t-main">

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { api, useAsync } from "../api";
+import { api, useQueue } from "../api";
 import { ACTION_LABEL, BUCKET_LABEL, SEVERITY_LABEL, bucketTone, daysLeftLabel, formatDate, formatINR, titleCase } from "../format";
 import { Badge, Empty, ErrorBox, Loading } from "../components/ui";
 import Drawer, { invoiceLabel, supplierName } from "../components/Drawer";
@@ -26,7 +26,7 @@ export default function Queue() {
   const sort = sp.get("sort") || "priority";
   const q = sp.get("q") || "";
 
-  const { data, setData, loading, error, reload } = useAsync(() => api.queue(), []);
+  const { data, updateItem: setData, isLoading: loading, error, refetch: reload } = useQueue();
   const [fallback, setFallback] = useState<QueueItem | null>(null);
   const [sel, setSel] = useState(0);
 
@@ -85,7 +85,7 @@ export default function Queue() {
   }, [id, rows, sel, sp, nav]);
 
   function update(it: QueueItem) {
-    setData((prev) => (prev ? prev.map((x) => (x.id === it.id ? it : x)) : prev));
+    setData(it);
     if (fallback && fallback.id === it.id) setFallback(it);
   }
 

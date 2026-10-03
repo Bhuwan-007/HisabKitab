@@ -3,13 +3,28 @@
     {
       "id": 1,
       "source": "purchase_books",
+      "status": "DISCREPANT",
+      "data": {
+        "invoice_no": "INV-101",
+        "total_amount": 12000.00,
+        "counterpart_summary": "Matched to GSTR-2B INV-101 (Tax ₹2160)",
+        "differences": "Tax differs by ₹200 (Books: ₹2360)",
+        "issue_id": 42
+      }
+    },
+    {
+      "id": 2,
+      "source": "purchase_books",
       "status": "MATCHED",
       "data": {
-        "invoice_no": "123"
+        "invoice_no": "INV-102",
+        "total_amount": 5400.50,
+        "counterpart_summary": "Exact match with GSTR-2B",
+        "differences": null
       }
     }
   ],
-  "total": 1,
+  "total": 2,
   "page": 1,
   "page_size": 50
 }

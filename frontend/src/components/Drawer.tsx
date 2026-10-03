@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { api } from "../api";
 import { ACTION_LABEL, BUCKET_LABEL, SEVERITY_LABEL, bucketTone, daysLeftLabel, formatDate, formatINR, titleCase } from "../format";
 import type { QueueItem } from "../types";
@@ -30,6 +31,12 @@ export default function Drawer({
   const [err, setErr] = useState<string | null>(null);
   const [stamp, setStamp] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const { data: supplierData } = useQuery({
+    queryKey: ["supplier", item.entity?.supplier_id],
+    queryFn: () => (item.entity?.supplier_id ? api.supplier(item.entity.supplier_id) : Promise.resolve(null)),
+    enabled: !!item.entity?.supplier_id,
+  });
 
   const draft: any = item.draft;
   const draftSubject = draft && typeof draft === "object" ? draft.subject : undefined;
@@ -108,6 +115,15 @@ export default function Drawer({
           {supplierName(item)} {invoiceLabel(item) && <>&middot; {invoiceLabel(item)}</>}
           {item.entity?.invoice_date && <> &middot; {formatDate(item.entity.invoice_date)}</>}
         </div>
+
+        {supplierData && supplierData.score !== undefined && (
+          <div className="note" style={{ marginTop: 12, marginBottom: 12 }}>
+            <strong>Supplier Risk Score: {Math.round(supplierData.score * 100)} / 100</strong>
+            {supplierData.factors && Object.keys(supplierData.factors).length > 0 && (
+              <div>Top Risk Factor: {Object.keys(supplierData.factors)[0]}</div>
+            )}
+          </div>
+        )}
 
         <div className="d-amount">
           <span>At stake</span>

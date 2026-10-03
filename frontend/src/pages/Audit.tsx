@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { api, useAsync } from "../api";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../api";
 import { ErrorBox, Loading, Empty } from "../components/ui";
 import { titleCase } from "../format";
 
@@ -14,8 +15,16 @@ function pct(n: number) {
 }
 
 export default function Audit() {
-  const ev = useAsync(() => api.evaluation(), []);
-  const au = useAsync(() => api.audit(), []);
+  const { data: evData, isLoading: evLoading, error: evError, refetch: evReload } = useQuery({
+    queryKey: ["evaluation"],
+    queryFn: () => api.evaluation()
+  });
+  
+  const { data: auData, isLoading: auLoading, error: auError, refetch: auReload } = useQuery({
+    queryKey: ["audit"],
+    queryFn: () => api.audit()
+  });
+
   const [ver, setVer] = useState<string | null>(null);
   const [verBad, setVerBad] = useState(false);
 
@@ -31,7 +40,7 @@ export default function Audit() {
     }
   }
 
-  const metrics = ev.data ?? {};
+  const metrics = evData ?? {};
   const keys = Object.keys(metrics);
   const money = keys.filter((k) => MONEY_TYPES.includes(k));
   const review = keys.filter((k) => !MONEY_TYPES.includes(k));
@@ -61,14 +70,14 @@ export default function Audit() {
           <h3>Tamper-evident audit trail</h3>
           <button className="btn primary" onClick={verify}>Verify chain</button>
           {ver && <div className={"verdict " + (verBad ? "bad" : "ok")}>{verBad ? "\u2717 " : "\u2713 "}{ver}</div>}
-          {au.loading && <Loading label="Reading the log..." />}
-          {au.error && <ErrorBox error={au.error} onRetry={au.reload} />}
-          {au.data && au.data.length === 0 && <Empty text="No audit entries yet. Run a reconciliation first." />}
-          {au.data && au.data.length > 0 && (
+          {auLoading && <Loading label="Reading the log..." />}
+          {auError && <ErrorBox error={auError as Error} onRetry={auReload} />}
+          {auData && auData.length === 0 && <Empty text="No audit entries yet. Run a reconciliation first." />}
+          {auData && auData.length > 0 && (
             <table className="audit">
               <thead><tr><th>When</th><th>Who</th><th>What</th><th>Record</th></tr></thead>
               <tbody>
-                {au.data.slice(0, 30).map((r: any, i: number) => (
+                {auData.slice(0, 30).map((r: any, i: number) => (
                   <tr key={r.id ?? i}>
                     <td>{String(r.ts ?? "").replace("T", " ").slice(0, 19)}</td>
                     <td>{r.actor}</td>
@@ -84,9 +93,9 @@ export default function Audit() {
         <section className="sheet">
           <h3>Detection accuracy</h3>
           <p className="fine">Measured on errors we planted in the synthetic data. Not a real-world accuracy claim.</p>
-          {ev.loading && <Loading label="Checking the answers..." />}
-          {ev.error && <ErrorBox error={ev.error} onRetry={ev.reload} />}
-          {ev.data && (
+          {evLoading && <Loading label="Checking the answers..." />}
+          {evError && <ErrorBox error={evError as Error} onRetry={evReload} />}
+          {evData && (
             <>
               <h4>Money rules</h4>
               <table className="audit"><thead><tr><th>Check</th><th className="num">Precision</th><th className="num">Recall</th></tr></thead>

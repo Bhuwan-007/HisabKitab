@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { EvalMetrics, Health, QueueItem, Summary } from "./types";
 
 const BASE = (import.meta.env.VITE_API_URL as string | undefined) || "http://localhost:8000/api";
@@ -49,28 +49,64 @@ export const api = {
     const r = await req<any>("/evaluation");
     return (r?.metrics ?? r) as EvalMetrics;
   },
+  supplier: (id: number) => req<any>(`/suppliers/${id}`),
+  suppliers: () => req<any[]>("/suppliers"),
+  graph: () => req<any>("/graph"),
+  rules: () => req<any>("/rules"),
+  records: (source: string, status: string, page: number) => req<any>(`/reconciliation/records?source=${encodeURIComponent(source)}&status=${encodeURIComponent(status)}&page=${page}`),
+  recordStatus: () => req<any>("/reconciliation/status"),
+  runRecon: () => req<any>("/reconcile/run", { method: "POST" }),
+  regenerate: () => req<any>("/data/seed", { method: "POST" }),
 };
 
-export function useAsync<T>(fn: () => Promise<T>, deps: unknown[]) {
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [tick, setTick] = useState(0);
+export function useSummary(period?: string) {
+  return useQuery({
+    queryKey: ["summary", period],
+    queryFn: () => api.summary(period),
+  });
+}
 
-  useEffect(() => {
-    let alive = true;
-    setLoading(true);
-    setError(null);
-    fn()
-      .then((d) => alive && setData(d))
-      .catch((e) => alive && setError(e instanceof Error ? e : new Error(String(e))))
-      .finally(() => alive && setLoading(false));
-    return () => {
-      alive = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...deps, tick]);
+export function useQueue() {
+  const queryClient = useQueryClient();
+  const query = useQuery({
+    queryKey: ["queue"],
+    queryFn: () => api.queue(),
+  });
 
-  const reload = useCallback(() => setTick((t) => t + 1), []);
-  return { data, setData, error, loading, reload };
+  const updateItem = (updatedItem: QueueItem) => {
+    queryClient.setQueryData(["queue"], (old: QueueItem[] | undefined) => {
+      if (!old) return old;
+      return old.map((x) => (x.id === updatedItem.id ? updatedItem : x));
+    });
+  };
+
+  return { ...query, updateItem };
+}
+
+export function useSuppliers() {
+  return useQuery({
+    queryKey: ["suppliers"],
+    queryFn: () => api.suppliers(),
+  });
+}
+
+export function useGraph() {
+  return useQuery({
+    queryKey: ["graph"],
+    queryFn: () => api.graph(),
+  });
+}
+
+export function useRules() {
+  return useQuery({
+    queryKey: ["rules"],
+    queryFn: () => api.rules(),
+  });
+}
+
+export function useRecordStatus() {
+  return useQuery({
+    queryKey: ["recordStatus"],
+    queryFn: () => api.recordStatus(),
+  });
 }
