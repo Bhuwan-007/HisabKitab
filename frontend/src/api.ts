@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { EvalMetrics, Health, QueueItem, Summary } from "./types";
 
-const BASE = (import.meta.env.VITE_API_URL as string | undefined) || "http://localhost:8000/api";
+const BASE = (import.meta.env.VITE_API_URL as string | undefined) || "https://hisabkitab-9lmf.onrender.com/api";
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
