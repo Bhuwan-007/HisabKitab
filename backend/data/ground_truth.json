@@ -660,93 +660,93 @@
     "note": ""
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 527,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 538,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 528,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 539,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 529,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 540,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 530,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 541,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 531,
-    "injected_issue_type": "UNMATCHED_PAYMENT",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 542,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 532,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 543,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 533,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 544,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 534,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 545,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 535,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 546,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
-    "entity_type": "bank_transaction",
-    "entity_id": 536,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
-    "note": ""
+    "entity_type": "purchase_invoice",
+    "entity_id": 547,
+    "injected_issue_type": null,
+    "note": "fuzzy_match_case"
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 537,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": "UNMATCHED_PAYMENT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 538,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": "UNMATCHED_PAYMENT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 539,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": "UNMATCHED_PAYMENT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 540,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": "UNMATCHED_PAYMENT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 541,
-    "injected_issue_type": "UPI_MDR_ADJUSTED",
+    "injected_issue_type": "UNMATCHED_PAYMENT",
     "note": ""
   },
   {
@@ -812,90 +812,150 @@
   {
     "entity_type": "bank_transaction",
     "entity_id": 552,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 553,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 554,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 555,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 556,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 557,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 558,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 559,
-    "injected_issue_type": null,
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 560,
-    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 561,
-    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
+    "injected_issue_type": "UPI_MDR_ADJUSTED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
     "entity_id": 562,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 563,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 564,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 565,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 566,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 567,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 568,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 569,
+    "injected_issue_type": null,
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 570,
     "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 952,
+    "entity_id": 571,
+    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 572,
+    "injected_issue_type": "UPI_SHORT_SETTLEMENT_UNEXPLAINED",
+    "note": ""
+  },
+  {
+    "entity_type": "bank_transaction",
+    "entity_id": 962,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 953,
+    "entity_id": 963,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 954,
+    "entity_id": 964,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },
   {
     "entity_type": "bank_transaction",
-    "entity_id": 955,
+    "entity_id": 965,
     "injected_issue_type": "UNMATCHED_RECEIPT",
     "note": ""
   },

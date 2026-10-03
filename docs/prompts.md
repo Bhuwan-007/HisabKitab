@@ -1,4 +1,4 @@
-# ITC Shield — Staged Prompts for Antigravity
+# HisabKitab — Staged Prompts for Antigravity
 
 Team Fintastic · about 10 to 12 hours · copy each prompt block into a **new** agent conversation, in order.
 
@@ -6,10 +6,10 @@ Team Fintastic · about 10 to 12 hours · copy each prompt block into a **new** 
 
 ## 0. Before you start (5 minutes)
 
-1. Create the repo folder `itc-shield/` and put the docs in `itc-shield/docs/`: `PRD.md`, `ARCHITECTURE.md`, `BUSINESS_RULES.md`, `RULES.md`, `PROMPTS.md`.
-2. Copy **Part 1** of `docs/RULES.md` into `itc-shield/AGENTS.md`.
+1. Create the repo folder `HisabKitab/` and put the docs in `HisabKitab/docs/`: `PRD.md`, `ARCHITECTURE.md`, `BUSINESS_RULES.md`, `RULES.md`, `PROMPTS.md`.
+2. Copy **Part 1** of `docs/RULES.md` into `HisabKitab/AGENTS.md`.
 3. `git init`, first commit "docs".
-4. Open the `itc-shield/` folder as the workspace in Antigravity.
+4. Open the `HisabKitab/` folder as the workspace in Antigravity.
 5. Create a free Gemini API key only if you want live LLM text (optional; the app works without it).
 6. Mode tip: if your build offers Planning and Fast modes, use Planning for stages 1 to 5 and 7, Fast for small fixes.
 

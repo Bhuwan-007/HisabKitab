@@ -1,4 +1,4 @@
-# ITC Shield — Architecture
+# HisabKitab — Architecture
 
 Team Fintastic · Fintechstico prototype · PS2: Intelligent Tax Reconciliation
 Status: v1 (pre-design-template). Source of truth for structure, data contracts and algorithms.

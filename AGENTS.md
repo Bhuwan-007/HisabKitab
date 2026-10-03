@@ -2,7 +2,7 @@
 
 ## Project
 
-ITC Shield: a pre-filing GST reconciliation web app for a hackathon prototype (team Fintastic). Backend: Python 3.11, FastAPI, SQLModel, SQLite, pandas, RapidFuzz, scikit-learn, NetworkX. Frontend: React 18, Vite, TypeScript, Tailwind, TanStack Query, Recharts.
+HisabKitab: a pre-filing GST reconciliation web app for a hackathon prototype (team Fintastic). Backend: Python 3.11, FastAPI, SQLModel, SQLite, pandas, RapidFuzz, scikit-learn, NetworkX. Frontend: React 18, Vite, TypeScript, Tailwind, TanStack Query, Recharts.
 
 Read before working: @docs/PRD.md, @docs/ARCHITECTURE.md, @docs/BUSINESS_RULES.md. If a task conflicts with them, stop and ask instead of improvising.
 

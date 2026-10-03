@@ -1,4 +1,4 @@
-# ITC Shield — Business Rules and Synthetic Data Spec
+# HisabKitab — Business Rules and Synthetic Data Spec
 
 Source of truth for the rule engine and the data generator. If code and this file disagree, fix the code (or ask the human to change this file).
 

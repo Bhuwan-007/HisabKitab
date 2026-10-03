@@ -1,4 +1,4 @@
-# ITC Shield — Product Requirements Document
+# HisabKitab — Product Requirements Document
 
 Team Fintastic · Fintechstico prototype round · PS2: Intelligent Tax Reconciliation
 Version 1.0 · Prototype window about 10 to 12 hours · Status: design template pending

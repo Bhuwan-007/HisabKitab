@@ -38,7 +38,7 @@ def test_generate_data():
         
         # Test decoys
         decoys = [gt for gt in gts if not gt.injected_issue_type]
-        assert len(decoys) == 16 # 8 invoices + 8 bank
+        assert len(decoys) == 26 # 18 invoices + 8 bank
         
         # Supplier GSTIN check
         sups = session.exec(select(Supplier)).all()

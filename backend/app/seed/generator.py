@@ -114,8 +114,8 @@ def generate_data():
 
         # Injections
         gt = []
-        def add_gt(etype, eid, itype):
-            gt.append(GroundTruth(entity_type=etype, entity_id=eid, injected_issue_type=itype, note=""))
+        def add_gt(etype, eid, itype, note=""):
+            gt.append(GroundTruth(entity_type=etype, entity_id=eid, injected_issue_type=itype, note=note))
 
         # Missing in 2B (14) - from the 4 late filers
         missing_2b = random.sample([p for p in purchases if p["supplier_id"] in [3, 4, 5, 6]], 14)
@@ -252,6 +252,33 @@ def generate_data():
             a["rate"] = rate; a["c"] = c; a["s"] = s; a["ig"] = ig; a["t"] = t
             add_gt("purchase_invoice", a["id"], "STATISTICAL_ANOMALY")
 
+        # Generate 10 fuzzy match cases
+        fuzzy_cases = []
+        for i in range(10):
+            tv = round_rupees(random.uniform(500, 5000))
+            f_rate = random.choice(rates).rate_after
+            s_src = random.choice(suppliers)
+            c, s, ig, t = calc_tax(tv, f_rate, s_src.state_code)
+            
+            p = {
+                "id": len(purchases) + i + 1,
+                "supplier_id": s_src.id,
+                "sup_gstin": s_src.gstin,
+                "sup_state": s_src.state_code,
+                "invoice_no_raw": f"FZ{s_src.id}X{i+1}",
+                "invoice_no_norm": normalize_invoice_no(f"FZ{s_src.id}X{i+1}"),
+                "invoice_date": end_date - timedelta(days=random.randint(15, 30)),
+                "taxable_value": tv, "cgst": c, "sgst": s, "igst": ig,
+                "val": tv, "t": round_rupees(c+s+ig),
+                "c": c, "s": s, "ig": ig,
+                "hsn": "1234",
+                "rate": f_rate,
+                "fuzzy_decoy": i + 1
+            }
+            fuzzy_cases.append(p)
+            add_gt("purchase_invoice", p["id"], None, note="fuzzy_match_case")
+        purchases.extend(fuzzy_cases)
+
         # Write to DB
         for p in purchases:
             # books
@@ -284,7 +311,7 @@ def generate_data():
             session.add(si)
             
             # gstr2b
-            if not p.get("miss_2b"):
+            if not p.get("miss_2b") and not p.get("is_dup"):
                 # if amount mismatch, gstr2b diff
                 diff = p.get("gstr2b_tax_diff", 1.0)
                 g2b_c = round_rupees(c * diff)
@@ -297,9 +324,21 @@ def generate_data():
                     g2b_s += p["rounding_diff"]/2 if g2b_s else 0
                     g2b_ig += p["rounding_diff"] if g2b_ig else 0
 
+                g2b_inv_raw = p["invoice_no_raw"]
+                g2b_date = p["invoice_date"]
+                if p.get("fuzzy_decoy"):
+                    idx = p["fuzzy_decoy"]
+                    if idx % 3 == 0:
+                        g2b_inv_raw = g2b_inv_raw + "0"
+                    elif idx % 3 == 1:
+                        g2b_inv_raw = g2b_inv_raw + "A"
+                    else:
+                        g2b_inv_raw = g2b_inv_raw.replace("X", "XX")
+                    g2b_date = g2b_date + timedelta(days=random.choice([-2, 2, -5, 5, 8]))
+                    
                 g2b = GSTR2BEntry(
-                    id=p["id"], supplier_gstin=p["sup_gstin"], invoice_no_raw=p["invoice_no_raw"],
-                    invoice_no_norm=p["invoice_no_norm"], invoice_date=p["invoice_date"],
+                    id=p["id"], supplier_gstin=p["sup_gstin"], invoice_no_raw=g2b_inv_raw,
+                    invoice_no_norm=normalize_invoice_no(g2b_inv_raw), invoice_date=g2b_date,
                     taxable_value=p["val"], cgst=g2b_c, sgst=g2b_s, igst=g2b_ig,
                     return_period=p["invoice_date"].strftime("%Y-%m"),
                     filed_on=p["invoice_date"] + timedelta(days=12)
@@ -454,7 +493,7 @@ def generate_data():
             json.dump(gt_export, f, indent=2)
 
         def export_table(model, filename):
-            rows = session.exec(select(model)).all()
+            rows = session.exec(select(model).order_by(model.id)).all()
             if not rows: return
             with open(f"data/exports/{filename}", "w", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=rows[0].model_dump().keys())

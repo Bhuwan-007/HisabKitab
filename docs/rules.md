@@ -1,4 +1,4 @@
-# ITC Shield — Agent Rules
+# HisabKitab — Agent Rules
 
 **How to use this file**
 - Copy **Part 1** into `AGENTS.md` at the repo root (Antigravity reads `GEMINI.md` and `AGENTS.md` from the project root; `GEMINI.md` wins if both exist). You can also save it under `.agents/rules/` (older builds use `.agent/rules/`), or add it from the Customizations panel.
@@ -11,7 +11,7 @@
 
 ## Project
 
-ITC Shield: a pre-filing GST reconciliation web app for a hackathon prototype (team Fintastic). Backend: Python 3.11, FastAPI, SQLModel, SQLite, pandas, RapidFuzz, scikit-learn, NetworkX. Frontend: React 18, Vite, TypeScript, Tailwind, TanStack Query, Recharts.
+HisabKitab: a pre-filing GST reconciliation web app for a hackathon prototype (team Fintastic). Backend: Python 3.11, FastAPI, SQLModel, SQLite, pandas, RapidFuzz, scikit-learn, NetworkX. Frontend: React 18, Vite, TypeScript, Tailwind, TanStack Query, Recharts.
 
 Read before working: @docs/PRD.md, @docs/ARCHITECTURE.md, @docs/BUSINESS_RULES.md. If a task conflicts with them, stop and ask instead of improvising.
 
